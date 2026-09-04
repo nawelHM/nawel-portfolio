@@ -1,0 +1,168 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 235 22% 4%;
+    --foreground: 220 15% 88%;
+
+    --card: 235 20% 7%;
+    --card-foreground: 220 15% 88%;
+
+    --popover: 235 20% 7%;
+    --popover-foreground: 220 15% 88%;
+
+    --primary: 192 85% 55%;
+    --primary-foreground: 235 22% 4%;
+
+    --secondary: 235 16% 11%;
+    --secondary-foreground: 220 10% 65%;
+
+    --muted: 235 16% 11%;
+    --muted-foreground: 220 10% 48%;
+
+    --accent: 192 85% 55%;
+    --accent-foreground: 235 22% 4%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 220 15% 88%;
+
+    --border: 235 16% 13%;
+    --input: 235 16% 12%;
+    --ring: 192 85% 55%;
+
+    --radius: 0.75rem;
+
+    /* Extended surface token */
+    --surface-raised: 235 18% 9%;
+
+    /* Shadows */
+    --shadow-card: 0 4px 32px hsl(235 30% 2% / 0.7);
+    --shadow-glow: 0 0 40px hsl(192 85% 55% / 0.1);
+
+    /* Transition */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 235 20% 7%;
+    --sidebar-foreground: 220 15% 88%;
+    --sidebar-primary: 192 85% 55%;
+    --sidebar-primary-foreground: 235 22% 4%;
+    --sidebar-accent: 235 16% 11%;
+    --sidebar-accent-foreground: 220 10% 65%;
+    --sidebar-border: 235 16% 13%;
+    --sidebar-ring: 192 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Hero radial glow */
+.hero-glow {
+  background: radial-gradient(ellipse 70% 40% at 50% 0%, hsl(192 85% 55% / 0.07), transparent 70%);
+}
+
+/* Accent line */
+.accent-line {
+  background: linear-gradient(90deg, hsl(var(--accent)), transparent);
+}
+
+/* Section reveal animation — applied when .is-visible added by IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Skill badge hover */
+.skill-badge {
+  transition: var(--transition);
+}
+
+.skill-badge:hover {
+  border-color: hsl(var(--accent) / 0.5);
+  background-color: hsl(var(--accent) / 0.06);
+  color: hsl(var(--accent));
+}
+
+/* Card hover */
+.portfolio-card {
+  transition: var(--transition);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+
+.portfolio-card:hover {
+  border-color: hsl(var(--border) / 0.8);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
